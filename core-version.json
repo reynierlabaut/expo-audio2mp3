@@ -5,7 +5,7 @@
   "artifacts": {
     "android": {
       "file": "audio2mp3-android-v0.1.0.zip",
-      "sha256": "fdd7f7454c5f4dd109221ec7450c893c6d7e3bf3cac8ecc879495797d2941b0e"
+      "sha256": "2c272a6f57b8a2b64acee2cf6e5eca7a56eb68be546377c050a8a6b10fbed082"
     },
     "ios": {
       "file": "audio2mp3-ios-v0.1.0.zip",
