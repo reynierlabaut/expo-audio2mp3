@@ -1,0 +1,51 @@
+{
+  "name": "expo-audio2mp3",
+  "version": "0.1.0",
+  "description": "Expo native module that extracts the audio of a video or audio file and converts it to MP3 using the OS decoders and audio2mp3-core.",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "typecheck": "tsc --noEmit",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly && bash scripts/fetch-core.sh --check",
+    "fetch-core": "bash scripts/fetch-core.sh",
+    "expo-module": "expo-module",
+    "open:ios": "xed example/ios",
+    "open:android": "open -a \"Android Studio\" example/android"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "expo-audio2mp3",
+    "mp3",
+    "audio",
+    "video",
+    "converter"
+  ],
+  "repository": "https://github.com/reynierlabaut/expo-audio2mp3",
+  "bugs": {
+    "url": "https://github.com/reynierlabaut/expo-audio2mp3/issues"
+  },
+  "author": "RyLabaut",
+  "license": "MIT",
+  "homepage": "https://github.com/reynierlabaut/expo-audio2mp3#readme",
+  "jest": {
+    "preset": "expo-module-scripts"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/react": "~19.1.0",
+    "expo": "^54.0.34",
+    "expo-module-scripts": "^5.0.8",
+    "react-native": "0.81.5"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}

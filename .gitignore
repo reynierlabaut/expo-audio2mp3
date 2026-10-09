@@ -1,0 +1,66 @@
+# OSX
+.DS_Store
+
+# VSCode
+.vscode/
+jsconfig.json
+
+# Xcode
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+# Android/IJ
+.classpath
+.cxx
+.gradle
+.idea
+.project
+.settings
+local.properties
+android.iml
+android/app/libs
+android/keystores/debug.keystore
+
+# Binarios de audio2mp3-core: los descarga scripts/fetch-core.sh
+# (se publican en el paquete npm, no en git)
+android/src/main/jniLibs/
+ios/Audio2Mp3Core.xcframework/
+.core-cache/
+
+# Cocoapods
+example/ios/Pods
+
+# Ruby
+example/vendor/
+
+# Example app (prebuild generado)
+example/android/
+example/ios/
+
+# Fixtures generados por scripts/make-fixtures.sh
+fixtures/out/
+
+# node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+*.tgz
+
+# Expo
+.expo/*

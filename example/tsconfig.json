@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "expo-audio2mp3": ["../src/index"],
+      "expo-audio2mp3/*": ["../src/*"]
+    }
+  }
+}

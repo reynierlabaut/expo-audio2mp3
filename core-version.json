@@ -1,0 +1,15 @@
+{
+  "version": "0.1.0",
+  "repository": "reynierlabaut/audio2mp3-core",
+  "tag": "v0.1.0",
+  "artifacts": {
+    "android": {
+      "file": "audio2mp3-android-v0.1.0.zip",
+      "sha256": "fdd7f7454c5f4dd109221ec7450c893c6d7e3bf3cac8ecc879495797d2941b0e"
+    },
+    "ios": {
+      "file": "audio2mp3-ios-v0.1.0.zip",
+      "sha256": null
+    }
+  }
+}

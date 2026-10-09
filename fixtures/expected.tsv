@@ -1,0 +1,19 @@
+# archivo	esperado (OK o códigos de error separados por |)	sampleRate	channels	nota
+mp4_h264_aac44_stereo.mp4	OK	44100	2
+mp4_aac48_stereo.mp4	OK	48000	2	sin resampling
+mp4_he_aac.mp4	OK	-	2	tasa del formato de salida del decoder
+mov_iphone.mov	OK	44100	2
+mp4_aac_5_1.mp4	OK	48000	2	downmix a stereo
+webm_opus48.webm	OK	48000	2	en iOS depende de la versión del sistema
+m4a_aac.m4a	OK	44100	2
+mp3_128.mp3	OK	44100	2
+wav_16k_mono.wav	OK	32000	1	resampling 16k → 32k
+flac_96k.flac	OK	48000	2	resampling 96k → 48k
+video_sin_audio.mp4	NO_AUDIO_TRACK	-	-
+corrupto.mp4	UNSUPPORTED_FORMAT|DECODER_ERROR	-	-
+no_existe.mp4	FILE_NOT_FOUND	-	-
+largo_10s.mp4	OK	44100	2
+largo_60s.mp4	OK	44100	2
+largo_600s.mp4	OK	44100	2
+largo_1800s.mp4	OK	44100	2
+largo_3600s.mp4	OK	44100	2

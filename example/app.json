@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "expo-audio2mp3-example",
+    "slug": "expo-audio2mp3-example",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "expo.modules.audio2mp3.example"
+    },
+    "android": {
+      "package": "expo.modules.audio2mp3.example",
+      "edgeToEdgeEnabled": true
+    }
+  }
+}

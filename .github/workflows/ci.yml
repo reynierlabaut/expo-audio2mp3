@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main, development]
+  pull_request:
+
+jobs:
+  js:
+    name: TypeScript y jest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx tsc --noEmit
+      - run: npx expo-module build
+        env:
+          CI: 1
+      - run: npx expo-module test --ci
+        env:
+          CI: 1
+
+  core-binaries:
+    name: Binarios de audio2mp3-core
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # audio2mp3-core es privado: CORE_TOKEN = PAT con lectura de ese repo.
+      - name: Descargar y verificar sha256
+        env:
+          GITHUB_TOKEN: ${{ secrets.CORE_TOKEN }}
+        run: bash scripts/fetch-core.sh --platform android
+      - name: Alineación a 16 KB
+        run: bash scripts/check-alignment.sh
+      - name: Tamaño por ABI (objetivo ≤ 300 KB)
+        run: |
+          for so in android/src/main/jniLibs/*/libaudio2mp3.so; do
+            echo "$(basename "$(dirname "$so")"): $(( $(stat -c %s "$so") / 1024 )) KB"
+          done
