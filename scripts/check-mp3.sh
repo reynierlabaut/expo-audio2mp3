@@ -22,10 +22,19 @@ check codec mp3 "$codec"
 [ "$channels" != "-" ] && check channels "$channels" "$got_channels"
 check bitrate "$((kbps * 1000))" "$got_bitrate"
 
-# Un frame MPEG-1 Layer III = 1152 muestras.
-tolerance="$(awk -v r="$got_rate" 'BEGIN { printf "%.6f", 1152 / r }')"
-if ! awk -v a="$got_duration" -v b="$duration_ms" -v t="$tolerance" 'BEGIN { d = a - b / 1000; if (d < 0) d = -d; exit !(d <= t) }'; then
-  echo "  ✗ duración: ${got_duration}s (esperado $((duration_ms))ms ±${tolerance}s)"
+# ffprobe cuenta los frames enteros: no descuenta el retardo del encoder (1057 muestras) ni el
+# relleno del último frame (< 1152), porque no aplica el gapless del tag `a2m`. Así que
+# 0 ≤ ffprobe − PCM ≤ (1057 + 1152) / tasa, + 1 ms porque durationMs es un entero truncado.
+max_extra="$(awk -v r="$got_rate" 'BEGIN { printf "%.6f", (1057 + 1152) / r + 0.001 }')"
+if ! awk -v a="$got_duration" -v b="$duration_ms" -v m="$max_extra" 'BEGIN { d = a - b / 1000; exit !(d >= -0.001 && d <= m) }'; then
+  echo "  ✗ duración: ${got_duration}s (PCM ${duration_ms}ms; extra permitido 0–${max_extra}s)"
+  fail=1
+fi
+
+# Decodificación completa con FFmpeg: ningún aviso ni error.
+warnings="$(ffmpeg -hide_banner -v warning -i "$file" -f null - 2>&1 | head -3)"
+if [ -n "$warnings" ]; then
+  echo "  ✗ ffmpeg: $warnings"
   fail=1
 fi
 
