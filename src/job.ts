@@ -21,7 +21,7 @@ export function toAudio2Mp3Error(error: unknown): Audio2Mp3Error {
 
 /**
  * Lanza una conversión con id propio, cancelación y progreso.
- * Interno en V1 (convertToMp3 = startConversion(...).promise); se expondrá en V1.1.
+ * API pública desde V1.1 (convertToMp3 = startConversion(...).promise).
  */
 export function startConversion(options: ConvertOptions): ConversionJob {
   const jobId = `job-${++lastJobId}`;

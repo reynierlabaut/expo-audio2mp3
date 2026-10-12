@@ -21,7 +21,9 @@ Es solo una capa de integración: sin FFmpeg, sin decoders propios, sin C/C++ qu
 ## 📋 Requisitos
 - Expo SDK 54+ con la **New Architecture**.
 - Una **development build** (`npx expo prebuild` / EAS Build). **Expo Go no está soportado.**
-- Android minSdk 24+, iOS 15.1+. Web no está soportado (rechaza con `UNSUPPORTED_PLATFORM`).
+- Android minSdk 24+. Web no está soportado (rechaza con `UNSUPPORTED_PLATFORM`).
+
+> ⚠️ **La 0.1.x es solo para Android.** La implementación de iOS está en el repositorio pero aún no se ha probado en un dispositivo; llegará en una versión posterior.
 
 ## 📦 Instalación
 
@@ -67,6 +69,20 @@ Para guardar el MP3 en la librería de música, usa `expo-media-library` (o simi
 | `overwrite` | `boolean` | `false` | Si es `false` y `output` existe, rechaza con `OUTPUT_EXISTS`. |
 
 `ConvertResult`: `uri` (`file://` del MP3), `durationMs`, `sizeBytes`, `sampleRate` (32000 \| 44100 \| 48000), `channels` (1 \| 2), `bitrate`.
+
+### `startConversion(options): ConversionJob`
+
+Mismas opciones, con progreso y cancelación. `convertToMp3(o)` equivale a `startConversion(o).promise`.
+
+```ts
+const job = startConversion({ input, output, bitrate: 192 });
+const sub = job.addProgressListener(p => setProgress(p)); // 0.0 → 1.0, como mucho cada 100 ms / 1 %
+job.cancel(); // la promesa rechaza con CANCELLED y no queda archivo parcial
+const result = await job.promise;
+sub.remove();
+```
+
+Si la entrada no informa su duración, no se emite progreso.
 
 ### Errores
 

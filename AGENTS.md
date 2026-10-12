@@ -17,7 +17,7 @@ vídeo / audio ─► decoder del sistema ─► PCM ─► audio2mp3-core ─�
 
 ## Estructura
 
-- `src/`: `index.ts` (`convertToMp3`), `job.ts` (jobId, cancelación y progreso internos, V1.1), `validate.ts`, `types.ts`, módulo nativo y stub web.
+- `src/`: `index.ts` (`convertToMp3`, `startConversion`), `job.ts` (jobId, cancelación y progreso, API pública V1.1), `validate.ts`, `types.ts`, módulo nativo y stub web.
 - `android/`: `Audio2Mp3Module` (executor serie) → `ConversionJob` (flujo §5) → `AudioDecoder` (MediaExtractor + MediaCodec) → `NativeEncoder` (JNI de `libaudio2mp3.so`; firmas en `crates/audio2mp3-jni/src/lib.rs` del core).
 - `ios/`: `Audio2Mp3Module` (DispatchQueue serie) → `ConversionJob` → `AudioDecoder` (AVAssetReader convierte el PCM; sin `pcm-convert`) → `Mp3EncoderHandle` (API C de `audio2mp3.h`).
 

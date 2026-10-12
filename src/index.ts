@@ -1,9 +1,12 @@
 import { startConversion } from './job';
 import { ConvertOptions, ConvertResult } from './types';
 
+export { startConversion };
+
 export {
   Audio2Mp3Error,
   type Audio2Mp3ErrorCode,
+  type ConversionJob,
   type ConvertOptions,
   type ConvertResult,
   type Mp3Bitrate,
